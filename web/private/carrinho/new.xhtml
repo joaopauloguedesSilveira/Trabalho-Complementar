@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <body>
+        <form>
+            <div class="ui-g">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-10">
+                    <h1>Cadastro de Produtos</h1>
+                </div>
+                <div class="ui-g-1"></div>
+                
+                <div class="ui-g-1"></div>
+                <div class="ui-g-10">
+                    <p:inputText id="Nome" placeholder="Nome"
+                                 value="#{carrinho.prod.nome}"
+                                 style="width: 95%;"/>
+                </div>
+                <div class="ui-g-10">
+                    <p:inputText id="preco" placeholder="Preço"
+                                 value="#{carrinho.prod.preco}"
+                                 style="width: 95%;"/>
+                </div>
+                <div class="ui-g-10">
+                    <p:inputText id="Desc" placeholder="Descrição"
+                                 value="#{carrinho.prod.desc}"
+                                 style="width: 95%;"/>
+                </div>
+                <div class="ui-g-1"></div>
+            </div>
+            <div align="center" style="margin-top: 20px;">
+                <p:commandButton value="Salvar" icon="ui-icon-check"  
+                                 action="#{carrinho.inserir()}"
+                                 style="width: 150px; margin-right: 20px;"
+                                 update="growl"/>
+                <p:commandButton value="Cancelar" icon="ui-icon-close" 
+                                 action="#{carrinho.cancelar()}" 
+                                 immediate="true" style="width: 150px;"/>
+            </div>
+        </form>
+    </body>
+        
+</html>
+
