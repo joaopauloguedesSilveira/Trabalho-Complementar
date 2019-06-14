@@ -8,7 +8,7 @@ package br.com.trabalhocomplementar.domain;
 import br.com.trabalhocomlementar.util.UtilMessages;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -21,7 +21,9 @@ public class Carrinho implements Serializable {
 
     
     Produto prod;
-    List<Produto> carrinho;
+    ArrayList<Produto> carrinho = new ArrayList<>();
+    ArrayList<Produto> carrinho1 = new ArrayList<>();
+    float total;
     int y = 0;
 
     public Carrinho() {
@@ -35,9 +37,22 @@ public class Carrinho implements Serializable {
         prod.setId(y);
         carrinho.add(prod);
         y = y+1;
-        return "list.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
     
+    public String inserirCarrinho(){
+        prod.setId(y);
+        carrinho1.add(prod);
+        y = y+1;
+        return "index.xhtml?faces-redirect=true";
+    }
+    
+    public float totalCompra(){
+        for( int x = 0; x <carrinho1.size();x++){
+            total = carrinho1.get(x).getPreco();
+        }
+        return total;
+    }
     public String novo(){
         prod = new Produto();
         return "new.xhtml?faces-redirect=true";
@@ -54,7 +69,7 @@ public class Carrinho implements Serializable {
                 UtilMessages.messageError("Falha ao excluir o produto!");
             }
         }
-        return "list.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
     
     public String alterar(){
@@ -67,12 +82,14 @@ public class Carrinho implements Serializable {
                 UtilMessages.messageInfo("Falha ao alterar o produto!");
             }
         }
-        return "list.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
      public String cancelar(){
-        return "list.xhtml?faces-redirect=true";
+        return "index.xhtml?faces-redirect=true";
     }
-    
+    public String mostraCarrinho(){
+        return "cart.xhtml?faces-redirect=true";
+    }
     public String carregarDados(Produto produto){
         prod = produto;
         return "alter.xhtml?faces-redirect=true";
@@ -86,12 +103,21 @@ public class Carrinho implements Serializable {
         this.prod = prod;
     }
 
-    public List<Produto> getCarrinho() {
+    public ArrayList<Produto> getCarrinho() {
         return carrinho;
     }
 
-    public void setCarrinho(List<Produto> carrinho) {
+    public void setCarrinho(ArrayList<Produto> carrinho) {
         this.carrinho = carrinho;
     }
+
+    public ArrayList<Produto> getCarrinho1() {
+        return carrinho1;
+    }
+
+    public void setCarrinho1(ArrayList<Produto> carrinho1) {
+        this.carrinho1 = carrinho1;
+    }
+    
     
 }
